@@ -12,7 +12,7 @@ config:
   arangoDBName: jalapeno
   redisPassword: a-very-complex-password-here
   sentinelPassword: a-very-complex-password-here
-  sentinelAddress: jagw-redis.jagw-dev.svc.cluster.local:26379
+  sentinelAddress: jagw-v1-redis:26379
   sentinelMaster: mymaster
   kafkaAddress: kafka.jalapeno.svc.cluster.local:9092
   influxDBUrl: influxdb.jalapeno.svc.cluster.local:8086
@@ -84,7 +84,7 @@ proxy:
     requestServicePort: 9903
     service:
       type: LoadBalancer
-      loadBalancerIP: "152.96.8.37" # Omit for automatic IP assignment
+      loadBalancerIP: "10.18.8.172" # Omit for automatic IP assignment
       # nodePort: Optional (only if NodePort is used)
       # subscriptionServiceNodePort: 31146
       # requestServiceNodePort: 31147

@@ -26,6 +26,16 @@ spec:
           - name: config
             mountPath: "/etc/envoy/"
             readOnly: true
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ready
+              port: {{ .Values.proxy.config.appServerPort }}
+              scheme: HTTP
+            initialDelaySeconds: 3
+            periodSeconds: 3
+            successThreshold: 1
+            timeoutSeconds: 1
           ports:
           - containerPort: {{ .Values.proxy.config.appServerPort }}
             protocol: TCP
@@ -37,6 +47,16 @@ spec:
           imagePullPolicy: "{{ .Values.imagePullSecrets }}"
           {{- end }}
           name: "{{ .Values.proxy.name }}"
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ready
+              port: {{ .Values.proxy.config.appServerPort }}
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 3
+            successThreshold: 1
+            timeoutSeconds: 1
           {{- if .Values.proxy.resources }}
           resources:
             {{- if .Values.proxy.resources.requests }}

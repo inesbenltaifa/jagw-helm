@@ -23,6 +23,10 @@ spec:
     {{- if and (eq .Values.proxy.config.service.type "NodePort") .Values.proxy.config.service.nodePort.requestServiceNodePort }}
     nodePort: {{ .Values.proxy.config.service.nodePort.requestServiceNodePort}}
     {{- end }}
+  - name: admin-envoy
+    port: {{ .Values.proxy.config.appServerPort }}
+    protocol: TCP
+    targetPort: {{ .Values.proxy.config.appServerPort }}
   {{- if and (eq .Values.proxy.config.service.type "LoadBalancer") .Values.proxy.config.service.loadBalancerIP }}
   loadBalancerIP: "{{ .Values.proxy.config.service.loadBalancerIP }}"
   {{- end }}
