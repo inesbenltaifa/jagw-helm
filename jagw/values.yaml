@@ -6,7 +6,7 @@ release:
   subscriptionServiceTag: v1.3.2
 
 config:
-  arangoDB: jalapeno-arangodb.jalapeno.svc.cluster.local:8086
+  arangoDB: arangodb.jalapeno.svc.cluster.local:8086
   arangoDBUser: root
   arangoDBPassword: jalapeno
   arangoDBName: jalapeno
@@ -75,7 +75,7 @@ proxy:
   image:
     repository: envoyproxy/envoy
     pullPolicy: Always
-    tag: v1.20.7
+    tag: v1.28.0
   resources: []
   config:
     appServerAddress: 0.0.0.0
